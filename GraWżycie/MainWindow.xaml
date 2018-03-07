@@ -1,0 +1,22 @@
+﻿<Window x:Class="GraWżycie.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GraWżycie"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Canvas Height="299" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="419"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="434,289,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Górny próg życia" HorizontalAlignment="Left" Margin="434,10,0,0" VerticalAlignment="Top" Height="16" Width="73" AutomationProperties.Name="f" FontSize="8"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="434,31,0,0" TextWrapping="Wrap" Text="warMax_input" VerticalAlignment="Top" Width="73"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="436,80,0,0" TextWrapping="Wrap" Text="warMin_inp" VerticalAlignment="Top" Width="73"/>
+        <Label Content="Dolny próg życia" HorizontalAlignment="Left" Margin="436,59,0,0" VerticalAlignment="Top" Height="16" Width="73" AutomationProperties.Name="f" FontSize="8"/>
+        <Label Content="Plansza_X" HorizontalAlignment="Left" Margin="436,108,0,0" VerticalAlignment="Top" Height="16" Width="73" AutomationProperties.Name="f" FontSize="8"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="436,129,0,0" TextWrapping="Wrap" Text="planX" VerticalAlignment="Top" Width="73" TextChanged="TextBox_TextChanged"/>
+        <Label Content="Plansza_X" HorizontalAlignment="Left" Margin="436,157,0,0" VerticalAlignment="Top" Height="16" Width="73" AutomationProperties.Name="f" FontSize="8"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="434,178,0,0" TextWrapping="Wrap" Text="planY" VerticalAlignment="Top" Width="73" TextChanged="TextBox_TextChanged"/>
+
+    </Grid>
+</Window>
