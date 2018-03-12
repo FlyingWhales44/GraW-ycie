@@ -7,16 +7,16 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <Canvas Height="299" Margin="10,10,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="419"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="434,289,0,0" VerticalAlignment="Top" Width="75"/>
-        <Label Content="Górny próg życia" HorizontalAlignment="Left" Margin="434,10,0,0" VerticalAlignment="Top" Height="16" Width="73" AutomationProperties.Name="f" FontSize="8"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="434,31,0,0" TextWrapping="Wrap" Text="warMax_input" VerticalAlignment="Top" Width="73"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="436,80,0,0" TextWrapping="Wrap" Text="warMin_inp" VerticalAlignment="Top" Width="73"/>
+        <Button x:Name="start" Content="Button" HorizontalAlignment="Left" Margin="434,289,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Górny próg życia" Margin="434,10,0,0" VerticalAlignment="Top" Height="16" AutomationProperties.Name="f" FontSize="8" HorizontalAlignment="Left" Width="73"/>
+        <TextBox x:Name="warMax" HorizontalAlignment="Left" Height="23" Margin="434,31,0,0" TextWrapping="Wrap" Text="warMax_input" VerticalAlignment="Top" Width="73"/>
+        <TextBox x:Name="WarMin" HorizontalAlignment="Left" Height="23" Margin="436,80,0,0" TextWrapping="Wrap" Text="warMin_inp" VerticalAlignment="Top" Width="73"/>
         <Label Content="Dolny próg życia" HorizontalAlignment="Left" Margin="436,59,0,0" VerticalAlignment="Top" Height="16" Width="73" AutomationProperties.Name="f" FontSize="8"/>
         <Label Content="Plansza_X" HorizontalAlignment="Left" Margin="436,108,0,0" VerticalAlignment="Top" Height="16" Width="73" AutomationProperties.Name="f" FontSize="8"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="436,129,0,0" TextWrapping="Wrap" Text="planX" VerticalAlignment="Top" Width="73" TextChanged="TextBox_TextChanged"/>
+        <TextBox x:Name="RozmiarX" HorizontalAlignment="Left" Height="23" Margin="436,129,0,0" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Width="73"/>
         <Label Content="Plansza_X" HorizontalAlignment="Left" Margin="436,157,0,0" VerticalAlignment="Top" Height="16" Width="73" AutomationProperties.Name="f" FontSize="8"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="434,178,0,0" TextWrapping="Wrap" Text="planY" VerticalAlignment="Top" Width="73" TextChanged="TextBox_TextChanged"/>
+        <TextBox x:Name="RozmiarY" HorizontalAlignment="Left" Height="23" Margin="434,178,0,0" TextWrapping="Wrap" Text="3" VerticalAlignment="Top" Width="73"/>
+        <Grid x:Name="plansza" HorizontalAlignment="Left" Height="299" Margin="10,10,0,0" VerticalAlignment="Top" Width="419"/>
 
     </Grid>
 </Window>
