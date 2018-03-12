@@ -51,6 +51,7 @@ namespace GraWżycie
         public int Count( int i, int j)
         {
             int licz=0;
+
             for (int z = i - 1; z < i + 2; z++)
                 for (int c = j - 1; c < j + 2; c++)
                     if (cell[c, z] == true && z != i && c != j)

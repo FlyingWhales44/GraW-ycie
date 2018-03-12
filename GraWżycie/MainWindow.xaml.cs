@@ -53,6 +53,7 @@ namespace GraWżycie
         private void Start(object sender, EventArgs e)
         {
             engine.game();
+            ConvertCells();
         }
 
         private void OnClick(object sender, EventArgs e)
@@ -78,7 +79,12 @@ namespace GraWżycie
                 {
                     temp=ButtonList.SingleOrDefault(r => r.Name == "I" + j + "I" + i);
                     if (temp != null)
-                        temp.Background = Brushes.Gray;
+                    {
+                        if (!engine.cell[j,i])
+                            temp.Background = Brushes.Gray;
+                        else
+                            temp.Background = Brushes.DarkBlue;
+                    }
 
                 }
         }
