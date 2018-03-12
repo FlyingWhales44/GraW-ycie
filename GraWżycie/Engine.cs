@@ -41,7 +41,7 @@ namespace GraWżycie
 
         public void CellLife(int licznik, int i, int j)
         {
-            if (cell[j, i] == true)
+            if (cell[j, i] == true)//sprawdz
                 if (licznik >= warMin && licznik <= warMax)
                     buff[j, i] = true;
                 else
