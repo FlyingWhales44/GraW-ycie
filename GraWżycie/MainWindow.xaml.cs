@@ -26,12 +26,48 @@ namespace GraWżycie
 
             engine = new Engine();
 
-            RozmiarX.TextChanged += new TextChangedEventHandler(XChanged);
-            RozmiarY.TextChanged += new TextChangedEventHandler(YChanged);
+            BRozmiarX.TextChanged += new TextChangedEventHandler(XChanged);
+            BRozmiarY.TextChanged += new TextChangedEventHandler(YChanged);
+            BMaxLife.TextChanged += new TextChangedEventHandler(MaxL);
+            BMaxDead.TextChanged += new TextChangedEventHandler(MaxD);
+            BMinDead.TextChanged += new TextChangedEventHandler(MinD);
+            BMinLife.TextChanged += new TextChangedEventHandler(MinL);
 
-            SetPlansza(Convert.ToInt32(RozmiarX.Text), Convert.ToInt32(RozmiarY.Text));
+            SetPlansza(Convert.ToInt32(BRozmiarX.Text), Convert.ToInt32(BRozmiarY.Text), Convert.ToInt32(BMaxLife.Text), Convert.ToInt32(BMinLife.Text), Convert.ToInt32(BMaxDead.Text), Convert.ToInt32(BMinDead.Text));
 
             start.Click += new RoutedEventHandler(Start);
+        }
+
+        private void MaxL(object sender, EventArgs e)
+        {
+            var txtbox = (TextBox)sender;
+            int counter = Convert.ToInt32(txtbox.Text);
+
+            SetPlansza(Convert.ToInt32(BRozmiarX.Text), Convert.ToInt32(BRozmiarY.Text),counter, Convert.ToInt32(BMinLife.Text), Convert.ToInt32(BMaxDead.Text), Convert.ToInt32(BMinDead.Text));
+        }
+
+        private void MinL(object sender, EventArgs e)
+        {
+            var txtbox = (TextBox)sender;
+            int counter = Convert.ToInt32(txtbox.Text);
+
+            SetPlansza(Convert.ToInt32(BRozmiarX.Text), Convert.ToInt32(BRozmiarY.Text), Convert.ToInt32(BMaxLife.Text), counter, Convert.ToInt32(BMaxDead.Text), Convert.ToInt32(BMinDead.Text));
+        }
+
+        private void MaxD(object sender, EventArgs e)
+        {
+            var txtbox = (TextBox)sender;
+            int counter = Convert.ToInt32(txtbox.Text);
+
+            SetPlansza(Convert.ToInt32(BRozmiarX.Text), Convert.ToInt32(BRozmiarY.Text), Convert.ToInt32(BMaxLife.Text), Convert.ToInt32(BMinLife.Text), counter, Convert.ToInt32(BMinDead.Text));
+        }
+
+        private void MinD(object sender, EventArgs e)
+        {
+            var txtbox = (TextBox)sender;
+            int counter = Convert.ToInt32(txtbox.Text);
+
+            SetPlansza(Convert.ToInt32(BRozmiarX.Text), Convert.ToInt32(BRozmiarY.Text), Convert.ToInt32(BMaxLife.Text), Convert.ToInt32(BMinLife.Text), Convert.ToInt32(BMaxDead.Text), counter);
         }
 
         private void XChanged(object sender, EventArgs e)
@@ -39,7 +75,7 @@ namespace GraWżycie
             var txtbox = (TextBox)sender;
             int x = Convert.ToInt32(txtbox.Text);
 
-            SetPlansza(x, Convert.ToInt32(RozmiarY.Text));
+            SetPlansza(x, Convert.ToInt32(BRozmiarY.Text), Convert.ToInt32(BMaxLife.Text), Convert.ToInt32(BMinLife.Text), Convert.ToInt32(BMaxDead.Text), Convert.ToInt32(BMinDead.Text));
         }
 
         private void YChanged(object sender, EventArgs e)
@@ -47,7 +83,7 @@ namespace GraWżycie
             var txtbox = (TextBox)sender;
             int y = Convert.ToInt32(txtbox.Text);
 
-            SetPlansza(Convert.ToInt32(RozmiarX.Text), y);
+            SetPlansza(Convert.ToInt32(BRozmiarX.Text), y, Convert.ToInt32(BMaxLife.Text), Convert.ToInt32(BMinLife.Text), Convert.ToInt32(BMaxDead.Text), Convert.ToInt32(BMinDead.Text));
         }
 
         private void Start(object sender, EventArgs e)
@@ -58,7 +94,7 @@ namespace GraWżycie
 
         private void OnClick(object sender, EventArgs e)
         {
-            int x = -1, y = -1;
+            int x = 0, y = 0;
             var button = (Button)sender;
 
             if (button.Background == Brushes.DarkBlue)
@@ -96,7 +132,7 @@ namespace GraWżycie
             x = Convert.ToInt32(Cord[2]);
         }
 
-        private void SetPlansza(int x, int y)
+        private void SetPlansza(int x, int y, int MaxL, int MinL, int MaxD, int MinD)
         {
             Button pole;
             ButtonList = new List<Button>();
@@ -125,7 +161,7 @@ namespace GraWżycie
                     plansza.Children.Add(pole);
                 }
 
-            engine.set_(x, y, 3, 2, 3, 3);
+            engine.set_(x, y,MaxL, MinL, MaxD, MinD);
         }
 
     }
