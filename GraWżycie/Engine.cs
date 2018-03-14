@@ -8,54 +8,63 @@ namespace GraWżycie
 {
     class Engine
     {
-        public bool[,] cell;
-        protected bool[,] buff;
-        public int warMax, warMin, oknoX, oknoY;
+        public List<List<bool>> cell { get; set; }
+        protected List<List<bool>> buff { get; set; }
+        public int MaxLife, MinLife, MaxDead, MinDead, oknoX, oknoY;
 
         public void game()
         {
             int licznik;
 
-                for (int j = 1; j < oknoY - 1; j++)
-                    for (int i = 1; i < oknoX - 1; i++)
-                    {
+            for (int j = 1; j < oknoY - 1; j++)
+            {
+                for (int i = 1; i < oknoX - 1; i++)
+                {
 
-                        licznik=Count(i, j);
+                    licznik = Count(i, j);
 
-                        CellDie(licznik, i, j);
+                    if (cell[j][i] == true)
+                    { CellLife(licznik, i, j); }
+                    else
+                    { CellDie(licznik, i, j); }
 
-                        CellLife(licznik, i, j);
-                    }
-                Rewrite();
+                }
+            }
+            Rewrite();
 
-            
+
         }
 
         public void CellDie(int licznik, int i, int j)
         {
-            if (cell[j, i] == false && licznik == warMax)
-                buff[j, i] = true;
+            if ((licznik <= MaxDead) && (licznik >= MinDead))
+                buff[j][i] = true;
             else
-                buff[j, i] = false;
+                buff[j][i] = false;
         }
 
         public void CellLife(int licznik, int i, int j)
         {
-            if (cell[j, i] == true)//sprawdz
-                if (licznik >= warMin && licznik <= warMax)
-                    buff[j, i] = true;
-                else
-                    buff[j, i] = false;
+            if ((licznik <= MaxLife) && (licznik >= MinLife))
+                buff[j][i] = true;
+            else
+                buff[j][i] = false;
         }
 
-        public int Count( int i, int j)
+        public int Count(int i, int j)
         {
-            int licz=0;
+            int licz = 0;
 
-            for (int z = i - 1; z < i + 2; z++)
-                for (int c = j - 1; c < j + 2; c++)
-                    if (cell[c, z] == true && z != i && c != j)
-                        licz++;
+            for (int z = j - 1; z < j + 2; z++)
+                for (int c = i - 1; c < i + 2; c++)
+                {
+                    if (cell[z][c] == true)
+                    {
+                        if (z != j || c != i)
+                        { licz++; }
+                    }
+                }
+
             return licz;
         }
 
@@ -63,26 +72,37 @@ namespace GraWżycie
         {
             for (int j = 0; j < oknoY; j++)
                 for (int i = 0; i < oknoX; i++)
-                    cell[j, i] = buff[j, i];
+                    cell[j][i] = buff[j][i];
         }
 
-        public void set_(int x, int y, int wMax, int wMin)
+        public void set_(int x, int y, int MaxL, int MinL, int MaxD, int MinD)
         {
-         
-            warMax = wMax;
-            warMin = wMin;
-            oknoX = x+2;
-            oknoY = y+2;
-            cell = new bool[oknoX, oknoY];
-            buff = new bool[oknoX, oknoY];
+            MaxLife = MaxL;
+            MinLife = MinL;
+            MaxDead = MaxD;
+            MinDead = MinD;
+
+
+            oknoX = x + 2;
+            oknoY = y + 2;
+
+            cell = new List<List<bool>>();
+            buff = new List<List<bool>>();
 
             for (int i = 0; i < oknoY; i++)
+            {
+                cell.Add(new List<bool>());
                 for (int j = 0; j < oknoX; j++)
-                    cell[i, j] = false;
+                    cell[i].Add(false);
+            }
+
 
             for (int i = 0; i < oknoY; i++)
+            {
+                buff.Add(new List<bool>());
                 for (int j = 0; j < oknoX; j++)
-                    buff[i, j] = false;
+                   buff[i].Add(false);
+            }
 
         }
 

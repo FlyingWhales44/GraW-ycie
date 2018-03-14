@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:GraWżycie"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    <Grid>
+   <Grid>
         <Button x:Name="start" Content="Button" HorizontalAlignment="Left" Margin="434,289,0,0" VerticalAlignment="Top" Width="75"/>
         <Label Content="Górny próg życia" Margin="434,10,0,0" VerticalAlignment="Top" Height="16" AutomationProperties.Name="f" FontSize="8" HorizontalAlignment="Left" Width="73"/>
         <TextBox x:Name="warMax" HorizontalAlignment="Left" Height="23" Margin="434,31,0,0" TextWrapping="Wrap" Text="warMax_input" VerticalAlignment="Top" Width="73"/>
