@@ -20,6 +20,7 @@ namespace GraWżycie
     {
         Engine engine;
         List<Button> ButtonList;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -116,7 +117,7 @@ namespace GraWżycie
                     temp = ButtonList.SingleOrDefault(r => r.Name == "I" + i + "I" + j);
                     if (temp != null)
                     {
-                        if (!engine.cell[j][i])
+                        if (!engine.cell[i][j])
                             temp.Background = Brushes.Gray;
                         else
                             temp.Background = Brushes.DarkBlue;
