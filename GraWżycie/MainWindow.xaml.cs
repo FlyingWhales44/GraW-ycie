@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -12,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace GraWżycie
 {
@@ -20,12 +23,16 @@ namespace GraWżycie
     {
         Engine engine;
         List<Button> ButtonList;
+        DispatcherTimer UInterface;
+        System.Timers.Timer GameEngine;
 
         public MainWindow()
         {
             InitializeComponent();
 
             engine = new Engine();
+
+            declareTimers();
 
             BRozmiarX.TextChanged += new TextChangedEventHandler(XChanged);
             BRozmiarY.TextChanged += new TextChangedEventHandler(YChanged);
@@ -37,6 +44,43 @@ namespace GraWżycie
             SetPlansza(Convert.ToInt32(BRozmiarX.Text), Convert.ToInt32(BRozmiarY.Text), Convert.ToInt32(BMaxLife.Text), Convert.ToInt32(BMinLife.Text), Convert.ToInt32(BMaxDead.Text), Convert.ToInt32(BMinDead.Text));
 
             start.Click += new RoutedEventHandler(Start);
+        }
+
+        private void declareTimers()
+        {
+            UInterface = new DispatcherTimer();
+            GameEngine = new System.Timers.Timer();
+
+            UInterface.Interval = TimeSpan.FromSeconds(0.5);
+            GameEngine.Interval = 500;
+
+            UInterface.Tick += new EventHandler(TickUI);
+            GameEngine.Elapsed += new ElapsedEventHandler(TickEngine);
+
+        }
+
+        private void Start(object sender, EventArgs e)
+        {
+            if (GameEngine.Enabled == false)
+            {
+                GameEngine.Enabled = true;
+                UInterface.Start();
+            }
+            else
+            {
+                GameEngine.Enabled = false;
+                UInterface.Stop();
+            }
+        }
+
+        private void TickEngine(object sender, EventArgs e)
+        {
+            engine.game();
+        }
+
+        private void TickUI(object sender, EventArgs e)
+        {
+            ConvertCells();
         }
 
         private void MaxL(object sender, EventArgs e)
@@ -85,12 +129,6 @@ namespace GraWżycie
             int y = Convert.ToInt32(txtbox.Text);
 
             SetPlansza(Convert.ToInt32(BRozmiarX.Text), y, Convert.ToInt32(BMaxLife.Text), Convert.ToInt32(BMinLife.Text), Convert.ToInt32(BMaxDead.Text), Convert.ToInt32(BMinDead.Text));
-        }
-
-        private void Start(object sender, EventArgs e)
-        {
-            engine.game();
-            ConvertCells();
         }
 
         private void OnClick(object sender, EventArgs e)
